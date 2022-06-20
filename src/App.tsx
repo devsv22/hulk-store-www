@@ -1,4 +1,5 @@
 import Header from 'components/Header';
+import AddKardexRegistry from 'components/Kardex/AddKardexRegistry';
 import AddNewProduct from 'components/Product/AddNewProduct';
 import AddNewSupplier from 'components/Supplier/AddNewSupplier';
 import { Route, Routes, useNavigate } from 'react-router-dom';
@@ -14,14 +15,20 @@ const App: React.FC = () => {
 
   const onAddProduct = () => navigation('/products');
   const onAddSupplier = () => navigation('/suppliers');
+  const onKardexRegistry = () => navigation('/kardex');
 
   return (
     <>
-      <Header onAddProduct={onAddProduct} onAddSupplier={onAddSupplier} />
+      <Header
+        onAddProduct={onAddProduct}
+        onAddSupplier={onAddSupplier}
+        onCreateKardexRegistry={onKardexRegistry}
+      />
       <Container>
         <Routes>
           <Route path="/products" element={<AddNewProduct />} />
           <Route path="/suppliers" element={<AddNewSupplier />} />
+          <Route path="/kardex" element={<AddKardexRegistry />} />
         </Routes>
       </Container>
     </>
