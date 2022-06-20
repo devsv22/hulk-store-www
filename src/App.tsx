@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from 'components/Header';
+import AddNewProduct from 'components/Product/AddNewProduct';
+import AddNewSupplier from 'components/Supplier/AddNewSupplier';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
-function App() {
+const Container = styled.div`
+  padding: 20px;
+  margin: 10px 20vw;
+`;
+
+const App: React.FC = () => {
+  const navigation = useNavigate();
+
+  const onAddProduct = () => navigation('/products');
+  const onAddSupplier = () => navigation('/suppliers');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header onAddProduct={onAddProduct} onAddSupplier={onAddSupplier} />
+      <Container>
+        <Routes>
+          <Route path="/products" element={<AddNewProduct />} />
+          <Route path="/suppliers" element={<AddNewSupplier />} />
+        </Routes>
+      </Container>
+    </>
   );
-}
+};
 
 export default App;
